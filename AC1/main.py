@@ -1,6 +1,6 @@
 import os
 
-
+# функція new_entry додає книгу у домашню бібліотеку
 def new_entry():
     en = dict.fromkeys(['title', 'author', 'barcode', 'pages', 'read'])
     print("enter book title")
@@ -33,14 +33,14 @@ def new_entry():
     #    os.system('cls' if os.name == 'nt' else 'clear')
     return en
 
-
+# функція entry_out виводить книгу з домашньої бібліотеки; параметр en - це елемент списку котрий виводиться
 def entry_out(en):
     # for val in en.values():
     #    print(val)
     print('{title:<20}|{author:<20}|{barcode:<14d}|{pages:<5d}|{read!s:<}'.format(**en))  # TODO add indexes?
     return
 
-
+# функція library_out виводить домашню бібліотеку
 def library_out():
     if len(entries) != 0:
         print('{:<20}|{:<20}|{:<14}|{:<5}|{:<}'.format('Book title', 'Author', 'Barcode', 'Pages', 'Is read'))
@@ -51,7 +51,7 @@ def library_out():
         print('No entries in this library at the time')
     return
 
-
+# функція find_entries шукає книгу у списку домашньої бібліотеки за певними вхідними ключами (назва, автор або штрих-код)
 def find_entries():
     print('Search by:', end=' ')
     print('1: title;  2:author;  3: barcode;  Enter 0 to cancel')
@@ -87,12 +87,46 @@ def find_entries():
     return
 
 
+# функція remove_entry анігілює книгу з списку домашньої бібліотеки за вхідними ключами (назва або штрих-код)
 def remove_entry():
+	
+    print('Delete by:', end=' ')			# output string of text
+    print('1: title;  2: barcode;  Enter 0 to cancel')
+    key = input()							# key choose
+    if key == '1' or key.lower() == 'title':
+        key = 'title'
+    elif key == '2' or key.lower() == 'barcode':
+        key = 'barcode'
+    elif key == '0':
+        key = None
+    else:
+        print('Wrong search parameter')
+        key = None
+    if key is not None:
+        p = 1
+        print('Enter search value')
+        value = input()
+        if key == 'barcode':
+            while not value.isdecimal():
+                print("Please enter only digits")
+                value = input()
+            value = int(value)
+        for en in entries:
+            if en[key] == value:
+                entries.remove(en)
+                print(' book was deleted in current library')
+                p = 0
+        if p == 1:
+            print(' no such book was found in current library')
+    else:   # quit to menu
+        return
+    # TODO Maybe partial search
+    return
     # TODO Remove with index shifting
+	
     return
 
 
-i = 0
 entries = []
 
 print("Welcome to home library")
@@ -119,5 +153,3 @@ while True:
     enumerate(entries)
     # TODO add file update
 print("Terminating program....")
-
-
