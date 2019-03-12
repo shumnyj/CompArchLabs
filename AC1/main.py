@@ -1,4 +1,16 @@
-import os
+# import os
+
+
+# функція num_inp заповнює поле, вимагаючи введення числових даних
+def num_inp(field):
+    while field is None:
+        try:
+            field = int(input())
+        except ValueError:
+            print("Please enter a number")
+            field = None
+    return field
+
 
 # функція new_entry додає книгу у домашню бібліотеку
 def new_entry():
@@ -8,30 +20,21 @@ def new_entry():
     print("enter book author")
     en["author"] = input()
     print("enter book barcode")
-    while en["barcode"] is None:
-        try:
-            en["barcode"] = int(input())
-        except ValueError:
-            print("Please enter a number")
-            en["barcode"] = None
+    en['barcode'] = num_inp(en['barcode'])
     print("enter number of pages in book")
-    while en["pages"] is None:
-        try:
-            en["pages"] = int(input())
-        except ValueError:
-            print("Please enter a number")
-            en["pages"] = None
+    en['pages'] = num_inp(en['pages'])
     print("have you read this book Y/N?")
-    en["read"] = input()
-    if en["read"] == 'Y':
+    en["read"] = input().lower()
+    if en["read"] == 'y' or en["read"] == 'yes':
         en["read"] = True
-    elif en["read"] == 'N':
+    elif en["read"] == 'n' or en["read"] == 'no':
         en["read"] = False
     else:
-        print("Bad value")  # no cycle because field is not that important
+        print("Bad value")  # no check because field is not that important
         en["read"] = None
     #    os.system('cls' if os.name == 'nt' else 'clear')
     return en
+
 
 # функція entry_out виводить книгу з домашньої бібліотеки; параметр en - це елемент списку котрий виводиться
 def entry_out(en):
@@ -39,6 +42,7 @@ def entry_out(en):
     #    print(val)
     print('{title:<20}|{author:<20}|{barcode:<14d}|{pages:<5d}|{read!s:<}'.format(**en))  # TODO add indexes?
     return
+
 
 # функція library_out виводить домашню бібліотеку
 def library_out():
@@ -51,10 +55,10 @@ def library_out():
         print('No entries in this library at the time')
     return
 
-# функція find_entries шукає книгу у списку домашньої бібліотеки за певними вхідними ключами (назва, автор або штрих-код)
+
+# функція find_entries шукає книгу у списку домашньої бібліотеки за вхідними ключами (назва, автор або штрих-код)
 def find_entries():
-    print('Search by:', end=' ')
-    print('1: title;  2:author;  3: barcode;  Enter 0 to cancel')
+    print('Search by: 1: title;  2:author;  3: barcode;  Enter 0 to cancel')
     key = input()
     if key == '1' or key.lower() == 'title':
         key = 'title'
@@ -67,8 +71,21 @@ def find_entries():
     else:
         print('Wrong search parameter')
         key = None
-    count = 0
     if key is not None:
+        found = entry_search(key)
+        for en in found:
+            entry_out(en)
+        print(str(len(found)) + ' entries found in current library')
+    else:   # quit to menu
+        return
+    # TODO Maybe partial search
+    return
+
+
+# функція entry_search приймає ключ key за яким ведеться пошук та повертає список знайдених по введеному значенню книг
+def entry_search(key):
+    if key is not None:
+        found = []
         print('Enter search value')
         value = input()
         if key == 'barcode':
@@ -78,20 +95,18 @@ def find_entries():
             value = int(value)
         for en in entries:
             if en[key] == value:
-                entry_out(en)
-                count += 1
-        print(str(count) + ' entries found in current library')
+                found.append(en)
+        if not found:  # мда
+            return []
+        return found
     else:   # quit to menu
-        return
-    # TODO Maybe partial search
-    return
+        print('Error: Invalid Key')  # не викликається окремо, тому в теорії гілка не спрацює
+        return []
 
 
 # функція remove_entry анігілює книгу з списку домашньої бібліотеки за вхідними ключами (назва або штрих-код)
 def remove_entry():
-	
-    print('Delete by:', end=' ')			# output string of text
-    print('1: title;  2: barcode;  Enter 0 to cancel')
+    print('Delete by: 1: title;  2: barcode;  Enter 0 to cancel')
     key = input()							# key choose
     if key == '1' or key.lower() == 'title':
         key = 'title'
@@ -103,28 +118,13 @@ def remove_entry():
         print('Wrong search parameter')
         key = None
     if key is not None:
-        p = 1
-        print('Enter search value')
-        value = input()
-        if key == 'barcode':
-            while not value.isdecimal():
-                print("Please enter only digits")
-                value = input()
-            value = int(value)
-        for en in entries:
-            if en[key] == value:
+        found = entry_search(key)
+        if not found:
+            print('No such books found')
+        else:
+            for en in found:
                 entries.remove(en)
-                print(' book was deleted in current library')
-                p = 0
-        if p == 1:
-            print(' no such book was found in current library')
-    else:   # quit to menu
-        return
-    # TODO Maybe partial search
-    return
-    # TODO Remove with index shifting
-	
-    return
+            print(str(len(found)) + ' entries removed')
 
 
 entries = []
@@ -150,6 +150,5 @@ while True:
         find_entries()
     elif state == 4:
         remove_entry()
-    enumerate(entries)
-    # TODO add file update
+# TODO add file update
 print("Terminating program....")
