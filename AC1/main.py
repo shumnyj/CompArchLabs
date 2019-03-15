@@ -1,4 +1,5 @@
 # import os
+import json
 
 
 # функція num_inp заповнює поле, вимагаючи введення числових даних
@@ -47,9 +48,10 @@ def entry_out(en):
 # функція library_out виводить домашню бібліотеку
 def library_out():
     if len(entries) != 0:
-        print('{:<20}|{:<20}|{:<14}|{:<5}|{:<}'.format('Book title', 'Author', 'Barcode', 'Pages', 'Is read'))
-        print('_'*70)
-        for en in entries:
+        print('{:<3}|{:<20}|{:<20}|{:<14}|{:<5}|{:<}'.format('№', 'Book title', 'Author', 'Barcode', 'Pages', 'Is read'))
+        print('_'*73)
+        for ind, en in enumerate(entries):
+            print('{:<3}|'.format(ind), end=' ')
             entry_out(en)
     else:
         print('No entries in this library at the time')
@@ -124,15 +126,17 @@ def remove_entry():
         else:
             for en in found:
                 entries.remove(en)
-            print(str(len(found)) + ' entries removed')
+            print(str(len(found)) + ' entry(s) removed')
 
 
 entries = []
 
 print("Welcome to home library")
-# TODO Read JSON
+with open('library_data.json', 'r') as libfile:
+    entries = json.load(libfile)
+    libfile.close()
 while True:
-    print('\n0: Quit;  1: Show book list;  2: Add new book;  3: Find books;  4: Remove book')
+    print('\n0: Quit;  1: Show book list;  2: Add new book;  3: Fi1d books;  4: Remove book')
     state = None
     while state is None:
         try:
@@ -150,5 +154,8 @@ while True:
         find_entries()
     elif state == 4:
         remove_entry()
-# TODO add file update
+with open('library_data.json', 'w') as libfile:
+    json.dump(entries, libfile, indent=4)
+    libfile.close()
+
 print("Terminating program....")

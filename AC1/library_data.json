@@ -1,0 +1,30 @@
+[
+    {
+        "title": "yyyy",
+        "author": "aaa2",
+        "barcode": 452235,
+        "pages": 56,
+        "read": false
+    },
+    {
+        "title": "bbb",
+        "author": "aaa1",
+        "barcode": 545673,
+        "pages": 45,
+        "read": false
+    },
+    {
+        "title": "erer",
+        "author": "aaa2",
+        "barcode": 457574654,
+        "pages": 34,
+        "read": true
+    },
+    {
+        "title": "YEEET",
+        "author": "MEAT",
+        "barcode": 1352321421,
+        "pages": 23,
+        "read": true
+    }
+]
