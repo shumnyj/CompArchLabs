@@ -1,6 +1,6 @@
 # import os
 import json
-
+import requests
 
 # функція num_inp заповнює поле, вимагаючи введення числових даних
 def num_inp(field):
@@ -130,13 +130,24 @@ def remove_entry():
 
 
 entries = []
-
+filename = 'library_data.json'
 print("Welcome to home library")
-with open('library_data.json', 'r') as libfile:
-    entries = json.load(libfile)
-    libfile.close()
+
+"""
+try:
+    with open(filename, 'r') as libfile:
+        entries = json.load(libfile)
+        libfile.close()
+except FileNotFoundError:
+    print('\n File not found, creating new empty one')
+    entries = [] 
+"""
+
+entries = requests.get('http://127.0.0.1:5000/').json()
+
+
 while True:
-    print('\n0: Quit;  1: Show book list;  2: Add new book;  3: Fi1d books;  4: Remove book')
+    print('\n0: Save and Quit;  1: Show book list;  2: Add new book;  3: Fi1d books;  4: Remove book')
     state = None
     while state is None:
         try:
@@ -154,8 +165,12 @@ while True:
         find_entries()
     elif state == 4:
         remove_entry()
-with open('library_data.json', 'w') as libfile:
+r = requests.post(url='http://127.0.0.1:5000/', json=entries)
+
+"""
+with open(filename, 'w') as libfile:
     json.dump(entries, libfile, indent=4)
-    libfile.close()
+    libfile.close() 
+"""
 
 print("Terminating program....")
