@@ -14,14 +14,15 @@ try:
         libfile.close()
 except FileNotFoundError:
     print('\n File not found, creating new empty one')
-    entries = [] 
+    entries = []
 """
 
 try:
     entries = requests.get(connection).json()
     print("Welcome to home library")
     while True:
-        print('\n0: Save and Quit;  1: Show book list;  2: Add new book;  3: Find books;  4: Remove book(s)')
+        print('\n0: Save and Quit;  1: Show book list;  '
+              '2: Add new book; 3: Find books;  4: Remove book(s)')
         state = num_inp()
         if state == 0:
             break
@@ -43,7 +44,7 @@ except requests.exceptions.ConnectionError:
 """
 with open(filename, 'w') as libfile:
     json.dump(entries, libfile, indent=4)
-    libfile.close() 
+    libfile.close()
 """
 print("Terminating program....")
 

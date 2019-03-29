@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module myOut</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>myOut</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cshumnyj%5Csource%5Cpycharmprojects%5Cac%5Cac1%5Cmyout.py">c:\users\shumnyj\source\pycharmprojects\ac\ac1\myout.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-entry_out"><strong>entry_out</strong></a>(en)</dt><dd><tt>Функція&nbsp;entry_out&nbsp;виводить&nbsp;в&nbsp;консоль&nbsp;дані&nbsp;про&nbsp;книгу&nbsp;з&nbsp;домашньої&nbsp;бібліотеки;<br>
+:param&nbsp;en:&nbsp;single&nbsp;entry&nbsp;from&nbsp;library<br>
+:return:&nbsp;None<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#-entry_out">entry_out</a>({'author':&nbsp;'aaa2',&nbsp;'barcode':&nbsp;457574654,&nbsp;'pages':&nbsp;34,&nbsp;'read':&nbsp;True,&nbsp;'title':&nbsp;'erer'})<br>
+erer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|aaa2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|457574654&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|34&nbsp;&nbsp;&nbsp;|True<br>
+&gt;&gt;&gt;&nbsp;<a href="#-entry_out">entry_out</a>(dict.fromkeys(['title',&nbsp;'author',&nbsp;'barcode',&nbsp;'pages',&nbsp;'read']));<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;...<br>
+TypeError:&nbsp;unsupported&nbsp;format&nbsp;string&nbsp;passed&nbsp;to&nbsp;NoneType.__format__<br>
+&gt;&gt;&gt;&nbsp;<a href="#-entry_out">entry_out</a>(1);<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+TypeError:&nbsp;format()&nbsp;argument&nbsp;after&nbsp;**&nbsp;must&nbsp;be&nbsp;a&nbsp;mapping,&nbsp;not&nbsp;int<br>
+&gt;&gt;&gt;&nbsp;<a href="#-entry_out">entry_out</a>();<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+TypeError:&nbsp;<a href="#-entry_out">entry_out</a>()&nbsp;missing&nbsp;1&nbsp;required&nbsp;positional&nbsp;argument:&nbsp;'en'<br>
+&gt;&gt;&gt;&nbsp;<a href="#-entry_out">entry_out</a>({'ttt':&nbsp;2,&nbsp;'bbb':&nbsp;'a',&nbsp;'title':&nbsp;'aw'})<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;&nbsp;...<br>
+KeyError:&nbsp;'author'</tt></dd></dl>
+ <dl><dt><a name="-library_out"><strong>library_out</strong></a>(entries)</dt><dd><tt>функція&nbsp;library_out&nbsp;виводить&nbsp;всю&nbsp;поточну&nbsp;домашню&nbsp;бібліотеку&nbsp;в&nbsp;вікно&nbsp;консолі&nbsp;як&nbsp;таблицю<br>
+:param&nbsp;entries:&nbsp;list&nbsp;of&nbsp;entry&nbsp;dicts<br>
+:return:&nbsp;None<br>
+&nbsp;<br>
+&gt;&gt;&gt;&nbsp;<a href="#-library_out">library_out</a>([])<br>
+No&nbsp;entries&nbsp;in&nbsp;this&nbsp;library&nbsp;at&nbsp;the&nbsp;time<br>
+&gt;&gt;&gt;&nbsp;<a href="#-library_out">library_out</a>([{'author':&nbsp;'aaa2',&nbsp;'barcode':&nbsp;457574654,&nbsp;'pages':&nbsp;34,&nbsp;'read':&nbsp;True,&nbsp;'title':&nbsp;'erer'}])<br>
+№&nbsp;&nbsp;|Book&nbsp;title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Author&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Barcode&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Pages|Is&nbsp;read<br>
+_________________________________________________________________________<br>
+0&nbsp;&nbsp;|&nbsp;erer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|aaa2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|457574654&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|34&nbsp;&nbsp;&nbsp;|True<br>
+&gt;&gt;&gt;&nbsp;<a href="#-library_out">library_out</a>(4)<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;...<br>
+TypeError:&nbsp;object&nbsp;of&nbsp;type&nbsp;'int'&nbsp;has&nbsp;no&nbsp;len()<br>
+&gt;&gt;&gt;&nbsp;<a href="#-library_out">library_out</a>()<br>
+Traceback&nbsp;(most&nbsp;recent&nbsp;call&nbsp;last):<br>
+&nbsp;...<br>
+TypeError:&nbsp;<a href="#-library_out">library_out</a>()&nbsp;missing&nbsp;1&nbsp;required&nbsp;positional&nbsp;argument:&nbsp;'entries'</tt></dd></dl>
+</td></tr></table>
+</body></html>

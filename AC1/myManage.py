@@ -96,7 +96,8 @@ def find_entries(entries):
     TypeError: Parameter is not list
     """
     if entries and entries != [] and type(entries) == list:
-        print('Search by: 1: title;  2:author;  3: barcode;  Enter 0 to cancel')
+        print('Search by: 1: title;  2:author;'
+              '  3: barcode;  Enter 0 to cancel')
         key = input()
         if key == '1' or key.lower() == 'title':
             key = 'title'

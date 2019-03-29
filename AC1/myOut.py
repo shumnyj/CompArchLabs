@@ -25,7 +25,8 @@ def entry_out(en):
     """
     # for val in en.values():
     #    print(val)
-    print('{title:<20}|{author:<20}|{barcode:<14d}|{pages:<5d}|{read!s:<}'.format(**en))
+    print('{title:<20}|{author:<20}|{barcode:<14d}|'
+          '{pages:<5d}|{read!s:<}'.format(**en))
     return
 
 
@@ -52,7 +53,8 @@ def library_out(entries):
     TypeError: library_out() missing 1 required positional argument: 'entries'
     """
     if len(entries) != 0:
-        print('{:<3}|{:<20}|{:<20}|{:<14}|{:<5}|{:<}'.format('№', 'Book title', 'Author', 'Barcode', 'Pages', 'Is read'))
+        print('{:<3}|{:<20}|{:<20}|{:<14}|{:<5}|{:<}'.format
+              ('№', 'Book title', 'Author', 'Barcode', 'Pages', 'Is read'))
         print('_'*73)
         for ind, en in enumerate(entries):
             print('{:<3}|'.format(ind), end=' ')
